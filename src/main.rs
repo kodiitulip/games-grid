@@ -1,7 +1,7 @@
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
-use postgres::{Client, Config, NoTls, Statement};
+use postgres::Config;
 use ratatui::{prelude::*, widgets};
-use std::{fmt::Debug, io, time::Duration};
+use std::{fmt::Debug, io};
 
 #[cfg(test)]
 mod tests;
@@ -9,8 +9,6 @@ mod tests;
 fn main() -> color_eyre::Result<()> {
     color_eyre::install()?;
     ratatui::run(|terminal| App::default().run(terminal))?;
-
-    let client = Client::connect("host=localhost user=postgres dbname=games-grid", NoTls);
 
     Ok(())
 }
@@ -53,8 +51,6 @@ impl App {
             _ => {}
         }
     }
-
-    fn configure_db(&mut self) {}
 
     fn quit_or_back(&mut self) {
         match self.current_screen {

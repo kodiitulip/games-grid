@@ -1,7 +1,6 @@
 #![allow(dead_code)]
 
 use postgres::{Client, NoTls, Row};
-use uuid::Uuid;
 
 pub struct GamesDAO {
     pub id: i32,
